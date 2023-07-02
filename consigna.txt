@@ -16,7 +16,7 @@ Desarrollar el servidor basado en Node.JS y express, que escuche en el puerto 80
        que contenga las rutas donde están almacenadas las imágenes referentes a dicho producto
         ● Status es true por defecto.
         ● Todos los campos son obligatorios, a excepción de thumbnails
-    X La ruta PUT /:pid deberá tomar un producto y actualizarlo por los campos enviados desde body. NUNCA se debe actualizar o eliminar el id al momento de hacer dicha actualización.
+    ✓ La ruta PUT /:pid deberá tomar un producto y actualizarlo por los campos enviados desde body. NUNCA se debe actualizar o eliminar el id al momento de hacer dicha actualización.
     X La ruta DELETE /:pid deberá eliminar el producto con el pid indicado. 
  Para el carrito, el cual tendrá su router en /api/carts/, configurar dos rutas:
     La ruta raíz POST / deberá crear un nuevo carrito con la siguiente estructura:
@@ -29,3 +29,17 @@ Desarrollar el servidor basado en Node.JS y express, que escuche en el puerto 80
     Además, si un producto ya existente intenta agregarse al producto, incrementar el campo quantity de dicho producto. 
 La persistencia de la información se implementará utilizando el file system, donde los archivos “productos,json” y “carrito.json”, respaldan la información.
 No es necesario realizar ninguna implementación visual, todo el flujo se puede realizar por Postman o por el cliente de tu preferencia.
+
+//silicitudes en POSTMAN
+GET 
+127.0.0.1:8080/api/products/1
+127.0.0.1:8080/api/carts/
+127.0.0.1:8080/api/products/?limit=2
+
+POST 
+127.0.0.1:8080/api/products/
+    {
+        "title": "nuevo",
+        "price": 0,
+        "code": "ABC"
+    }

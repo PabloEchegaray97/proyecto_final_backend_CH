@@ -41,4 +41,15 @@ router.post('/', async (req, res) => {
     const result = await productManager.addProduct(req.body);
     res.send(result);
 });
+
+router.put('/:pid', async (req,res) => {
+    try {
+        const pid = parseInt(req.params.pid);
+        const updatedProps = req.body;
+        await productManager.updateProduct(pid, updatedProps);
+        res.send(`Product updated -  ID:${pid}.`);
+    } catch (error) {
+        res.status(400).send({error: errror.message})
+    }
+})
 export default router

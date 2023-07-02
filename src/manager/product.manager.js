@@ -50,6 +50,24 @@ export default class ProductManager extends FileManager {
         }
     };
 
+    updateProduct = async (id, updatedProps) => {
+        try {
+            const listOfProducts = await this.getProduct();
+            const productIndex = listOfProducts.findIndex((element) => element.id === id);
+
+            if (productIndex !== -1) {
+                const updatedProduct = { ...listOfProducts[productIndex], ...updatedProps };
+                updatedProduct.id = id; // Evitar la actualización del ID
+                listOfProducts[productIndex] = updatedProduct;
+                await this.set(listOfProducts)
+                console.log(`Producto con ID ${id} actualizado.`);
+            } else {
+                console.log(`Producto con ID ${id} no encontrado.`);
+            }
+        } catch (error) {
+            console.log('Error al actualizar el producto:', error);
+        }
+    };
     getProduct = async () => {
         const result = await this.get()
         return result
