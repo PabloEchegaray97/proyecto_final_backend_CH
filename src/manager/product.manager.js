@@ -1,10 +1,16 @@
-import FileManager from "./file.manager";
+import FileManager from "./file.manager.js";
 
-class ProductManager extends FileManager{
+export default class ProductManager extends FileManager{
     constructor() {
         super('./products.json')
     }
-    listarProducts = () => {
-        const result = this.get()
+    create = async(data) => {
+        const result = await this.set(data)
+        return result
+    }
+    list = async () => {
+        const result = await this.get()
+        console.log('hi');
+        return result
     }
 }
