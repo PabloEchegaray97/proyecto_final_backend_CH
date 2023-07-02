@@ -3,9 +3,7 @@ class FileManager {
     constructor (filename = './db.json') {
         this.filename = filename
     }
-    getNextId =  (list) => {
-        return (list.length == 0) ? 1 : list[list.length - 1].id +1
-    }
+    
     get = async() => {
         return promises.readFile(this.filename, 'utf-8').then (r => JSON.parse(r)).catch(e => {
             return []
@@ -17,10 +15,8 @@ class FileManager {
     }
 
     set = async(data) => {
-        const list = await this.get()
-        data.id = this.getNextId(list)
-        list.push(data)
-        return promises.writeFile(this.filename, JSON.stringify(list))
+        
+        return promises.writeFile(this.filename, JSON.stringify(data))
     }
     update = async(data) => {
         const list = await this.get()
