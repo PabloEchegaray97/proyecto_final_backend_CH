@@ -43,3 +43,11 @@ POST
         "price": 0,
         "code": "ABC"
     }
+
+PUT 
+127.0.0.1:8080/api/products/1
+    {
+        "title": "mas_nuevo",
+        "price": 0,
+        "code": "ABCD"
+    }

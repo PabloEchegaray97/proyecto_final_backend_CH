@@ -16,7 +16,7 @@ export default class ProductManager extends FileManager {
             const nextID = (list.length > 0) ? list[list.length - 1].id + 1 : 1;
             return nextID;
         } catch (error) {
-            console.log('Error al obtener el próximo ID:', error);
+            console.log('Error getting next ID:', error);
             return null;
         }
     };
@@ -40,9 +40,9 @@ export default class ProductManager extends FileManager {
                 console.log(flag);
                 productsList.push(newProduct);
                 await this.set(productsList)
-                console.log(`Se ha agregado el producto: ${newProduct.title}, ID: ${newProduct.id}`);
+                console.log(`A new product has been added: ${newProduct.title}, ID: ${newProduct.id}`);
             } else {
-                console.log('El código del producto ingresado ya existe, por favor ingresa otro.');
+                console.log('The code already exists.');
             }
             
         } catch (e) {
@@ -60,14 +60,30 @@ export default class ProductManager extends FileManager {
                 updatedProduct.id = id; // Evitar la actualización del ID
                 listOfProducts[productIndex] = updatedProduct;
                 await this.set(listOfProducts)
-                console.log(`Producto con ID ${id} actualizado.`);
+                console.log(`Producto with ID ${id} updated.`);
             } else {
-                console.log(`Producto con ID ${id} no encontrado.`);
+                console.log(`Producto with ID ${id} not found.`);
             }
         } catch (error) {
             console.log('Error al actualizar el producto:', error);
         }
     };
+
+    deleteProduct = async (id) => {
+        try {
+            const products = await this.getProduct();
+            const updatedProducts = products.filter((product) => product.id !== id);
+            if (updatedProducts.length === products.length) {
+                console.log(`Product with ID ${id} not found.`);
+            } else {
+                await this.set(updatedProducts)
+                console.log(`Producto with ID ${id} deleted.`);
+            }
+        } catch (error) {
+            console.log('Error deleting product:', error);
+        }
+    };
+
     getProduct = async () => {
         const result = await this.get()
         return result
