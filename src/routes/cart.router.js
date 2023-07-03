@@ -7,7 +7,12 @@ router.get('/', async (req,res) => {
     const result = await cartManager.list()
     res.send(result)
 })
-router.get('/:idc/:idp', async (req,res) => {
+router.get('/:cid', async (req,res) => {
+    const carts = await cartManager.list()
+    const idCart = parseInt(req.params.cid)
+    res.send(carts[idCart-1])
+})
+router.post('/:idc/product/:idp', async (req,res) => {
     const idc = parseInt(req.params.idc)
     const idp = parseInt(req.params.idp)
 
