@@ -60,12 +60,12 @@ export default class ProductManager extends FileManager {
                 updatedProduct.id = id; // Evitar la actualización del ID
                 listOfProducts[productIndex] = updatedProduct;
                 await this.set(listOfProducts)
-                console.log(`Producto with ID ${id} updated.`);
+                console.log(`Product with ID ${id} updated.`);
             } else {
-                console.log(`Producto with ID ${id} not found.`);
+                console.log(`Product with ID ${id} not found.`);
             }
         } catch (error) {
-            console.log('Error al actualizar el producto:', error);
+            console.log('Update error:', error);
         }
     };
 
@@ -77,7 +77,7 @@ export default class ProductManager extends FileManager {
                 console.log(`Product with ID ${id} not found.`);
             } else {
                 await this.set(updatedProducts)
-                console.log(`Producto with ID ${id} deleted.`);
+                console.log(`Product with ID ${id} deleted.`);
             }
         } catch (error) {
             console.log('Error deleting product:', error);

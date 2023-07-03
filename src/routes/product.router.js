@@ -49,7 +49,7 @@ router.put('/:pid', async (req,res) => {
         await productManager.updateProduct(pid, updatedProps);
         res.send(`Product updated -  ID:${pid}.`);
     } catch (error) {
-        res.status(400).send({error: errror.message})
+        res.status(400).send({error: error.message})
     }
 })
 
